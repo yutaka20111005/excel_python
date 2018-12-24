@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+
+import openpyxl
+import datetime
+
+start_date=datetime.date.today()
+end_date=str(start_date) + "予定"
+incident_no="NO123456789"
+job_code="ABC012345"
+servername="zz21test0001"
+memo=""
+operation="ウォールター・ホワイト"
+recording="マイケル・スコーフィールド"
+
+# Excelファイルを開く --- (※1)
+filename = "ya.xlsx"
+book = openpyxl.load_workbook(filename)
+
+# アクティブになっているシートを得る --- (※2)
+sheet = book.active
+
+# 書き込む --- (※4)
+
+
+sheet['A1'] = start_date
+sheet['B1'] = end_date
+sheet['C1'] = incident_no
+sheet['D1'] = job_code
+sheet['E1'] = servername
+sheet['F1'] = memo
+sheet['G1'] = operation
+sheet['H1'] = recording
+
+# フォントなどの設定を変更する --- (※5)
+c = sheet['B1']
+c.font = openpyxl.styles.Font(size=14, color="FF0000")
+
+# 書き込んだ内容をファイルへ保存 --- (※6)
+filename = "ya.xlsx"
+book.save(filename)
+print("保存ok")
